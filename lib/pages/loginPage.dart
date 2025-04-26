@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
-import 'package:onyx_delivery/controllers/loginController.dart';
+import 'package:onyx_delivery/services/auth_service.dart';
 
 class LoginPage extends StatelessWidget {
   const LoginPage({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final controller = Get.find<LoginController>();
+    final controller = Get.put(AuthService());
     final size = MediaQuery.of(context).size;
 
     return SafeArea(
@@ -104,12 +104,12 @@ class LoginPage extends StatelessWidget {
                     SizedBox(
                       width: double.infinity,
                       height: 40,
-                      child: GetBuilder<LoginController>(
+                      child: GetBuilder<AuthService>(
                         builder: (c) => ElevatedButton(
-                          onPressed: c.isLoading ? null : c.login,
+                          onPressed: c.isLoading ? null : c.checkDeliveryLogin,
                           child: c.isLoading
-                              ? const CircularProgressIndicator(color: Colors.white)
-                              : const Text('Log in', style: TextStyle(color: Colors.white),),
+                            ? const CircularProgressIndicator(color: Colors.white)
+                            : const Text('Log in', style: TextStyle(color: Colors.white),),
                         ),
                       ),
                     ),

@@ -2,8 +2,7 @@ import 'package:flutter/material.dart';
 
 class AppTheme {
   static ThemeData lightTheme = ThemeData(
-    primarySwatch: Colors.teal,
-    //scaffoldBackgroundColor: const Color(0xFFE9FAFF),
+    primaryColor: Color(0xff004F62),
     fontFamily: 'Montserrat',
     textTheme: const TextTheme(
       headlineLarge: TextStyle(fontSize: 29, fontWeight: FontWeight.bold, color: Color(0xff004F62)),

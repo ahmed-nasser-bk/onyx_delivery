@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:onyx_delivery/app_theme.dart';
-import 'package:onyx_delivery/controllers/loginController.dart';
 import 'package:onyx_delivery/routes/routes.dart';
 
 void main() {
-  Get.put(LoginController());
   runApp(const MyApp());
 }
 
