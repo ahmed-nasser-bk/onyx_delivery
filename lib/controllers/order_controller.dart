@@ -1,5 +1,6 @@
 import 'package:get/get.dart';
 import 'package:onyx_delivery/services/database_service.dart';
+import 'package:onyx_delivery/services/session_manager.dart';
 import '../models/order_model.dart';
 import '../services/api_service.dart';
 
@@ -14,6 +15,7 @@ class OrderController extends GetxController {
     super.onInit();
     fetchOrders();
     loadOrdersFromDB();
+    SessionManager().start();
   }
 
   void loadOrdersFromDB() async {
@@ -70,4 +72,11 @@ class OrderController extends GetxController {
 
   return filtered;
   }
+
+  @override
+  void dispose() {
+    SessionManager().stop();
+    super.dispose();
+  }
+  
 }
