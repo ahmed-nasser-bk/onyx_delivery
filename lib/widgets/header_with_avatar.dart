@@ -58,7 +58,7 @@ class HeaderWithAvatar extends StatelessWidget {
           right: 16,
           child: IconButton(
             onPressed: () {},
-            icon: const Icon(Icons.menu, color: Colors.white),
+            icon: const Icon(Icons.language, color: Colors.white),
           ),
         ),
       ],

@@ -20,7 +20,7 @@ class AuthService extends GetxController {
     // هذا هو الـ Row اللي سترسله
     final Map<String, dynamic> payload = {
       'Value': {
-        'P_LANG_NO': '1',
+        'P_LANG_NO': '2',
         'P_DLVRY_NO': userId,
         'P_PSSWRD': password,
       }

@@ -14,11 +14,11 @@ class ApiService {
         'Content-Type': 'application/json',
       },
       body: jsonEncode({
-        "Value": {
-          "P_DLVRY_NO": "1010",
-          "P_LANG_NO": "1",
-          "P_BILL_SRL": "",
-          "P_PRCSSD_FLG": ""
+        'Value': {
+          'P_DLVRY_NO': '1010',
+          'P_LANG_NO': '2',
+          'P_BILL_SRL': '',
+          'P_PRCSSD_FLG': ''
         }
       }),
     );

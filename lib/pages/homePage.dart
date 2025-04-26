@@ -5,8 +5,8 @@ import 'package:onyx_delivery/widgets/order_list.dart';
 import '../../widgets/custom_toggle_tabs.dart';
 import '../../widgets/header_with_avatar.dart';
 
-class homePage extends StatelessWidget {
-  const homePage({super.key});
+class HomePage extends StatelessWidget {
+  const HomePage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -31,17 +31,15 @@ class homePage extends StatelessWidget {
 
             SizedBox(height: size.height * 0.02),
             
-            Expanded(
-              child: Obx(() {
-                if (tabsController.selectedIndex.value == 0) {
-                  // New tab
-                  return const OrderList();
-                } else {
-                  // others tab
-                  return const OrderList();
-                }
-              }),
-            ),
+            Obx(() {
+              if (tabsController.selectedIndex.value == 0) {
+                // New tab
+                return const OrderList();
+              } else {
+                // others tab
+                return const OrderList();
+              }
+            }),
           ],
         ),
       ),

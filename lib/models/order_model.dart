@@ -19,4 +19,14 @@ class OrderModel {
       status: json['DLVRY_STATUS_FLG']?.toString() ?? '',
     );
   }
+
+  Map<String, dynamic> toMap() {
+    return {
+      'billSerial': billSerial,
+      'billDate': billDate,
+      'billAmount': billAmount,
+      'status': status,
+    };
+  }
+
 }

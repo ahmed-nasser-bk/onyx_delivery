@@ -1,4 +1,5 @@
 import 'package:get/get.dart';
+import 'package:onyx_delivery/services/database_service.dart';
 import '../models/order_model.dart';
 import '../services/api_service.dart';
 
@@ -12,6 +13,20 @@ class OrderController extends GetxController {
   void onInit() {
     super.onInit();
     fetchOrders();
+    loadOrdersFromDB();
+  }
+
+  void loadOrdersFromDB() async {
+    try {
+      isLoading.value = true;
+      final localOrders = await DatabaseService.getOrders();
+      orders.assignAll(localOrders);
+    } catch (e) {
+      Get.snackbar('Error', e.toString());
+      print(e.toString());
+    } finally {
+      isLoading.value = false;
+    }
   }
 
   void fetchOrders() async {
@@ -19,6 +34,10 @@ class OrderController extends GetxController {
       isLoading.value = true;
       final fetchedOrders = await _apiService.fetchOrders();
       orders.assignAll(fetchedOrders);
+      await DatabaseService.clearOrders(); // Clear old orders
+      for (var order in fetchedOrders) {
+        await DatabaseService.insertOrder(order); // Storage new orders
+      }
     } catch (e) {
       Get.snackbar('Error', e.toString());
       print(e);
