@@ -6,9 +6,9 @@ class AppTheme {
     fontFamily: 'Montserrat',
     textTheme: const TextTheme(
       headlineLarge: TextStyle(fontSize: 29, fontWeight: FontWeight.bold, color: Color(0xff004F62)),
-      headlineMedium: TextStyle(fontSize: 24, fontWeight: FontWeight.bold, color: Color(0xff004F62)),
+      headlineMedium: TextStyle(fontSize: 14,  color: Color(0xff004F62)),
       bodyLarge: TextStyle(fontSize: 18, color: Color(0xff004F62)),
-      bodyMedium: TextStyle(fontSize: 14, color: Color(0xff004F62)),
+      bodySmall: TextStyle(fontSize: 14, color: Color(0xff808080)),
     ),
     inputDecorationTheme: InputDecorationTheme(
       filled: true,

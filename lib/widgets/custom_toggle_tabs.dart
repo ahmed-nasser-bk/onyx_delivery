@@ -1,18 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:onyx_delivery/controllers/order_controller.dart';
 
-class CustomToggleTabs extends StatefulWidget {
+class CustomToggleTabs extends StatelessWidget {
   const CustomToggleTabs({super.key});
-
-  @override
-  State<CustomToggleTabs> createState() => _CustomToggleTabsState();
-}
-
-class _CustomToggleTabsState extends State<CustomToggleTabs> {
-  int selectedIndex = 0;
 
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
+    final OrderController controller = Get.put(OrderController());
+
     final tabWidth = (size.width * 0.8) / 2;
 
     return Container(
@@ -21,7 +18,7 @@ class _CustomToggleTabsState extends State<CustomToggleTabs> {
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(30),
-        boxShadow: [
+        boxShadow: const [
           BoxShadow(
             color: Colors.black12,
             blurRadius: 4,
@@ -29,24 +26,27 @@ class _CustomToggleTabsState extends State<CustomToggleTabs> {
           ),
         ],
       ),
-      child: Row(
-        children: [
-          _buildTab(title: 'New', index: 0, width: tabWidth),
-          _buildTab(title: 'Others', index: 1, width: tabWidth),
-        ],
-      ),
+      child: Obx(() => Row(
+            children: [
+              _buildTab(title: 'New',  index: 0, width: tabWidth, controller: controller),
+              _buildTab(title: 'Others', index: 1, width: tabWidth, controller: controller),
+            ],
+          )),
     );
   }
 
-  Widget _buildTab({required String title, required int index, required double width}) {
-    final isSelected = selectedIndex == index;
+  Widget _buildTab({
+    required String title,
+    required int index,
+    required double width,
+    required OrderController controller,
+  }) {
+    final isSelected = controller.selectedTab.value == index;
+
     return GestureDetector(
-      onTap: () {
-        setState(() => selectedIndex = index);
-        // TODO: تنفيذ فلترة أو تغيير المحتوى حسب التبويب المختار
-      },
+      onTap: () => controller.changeTab(index),
       child: AnimatedContainer(
-        duration: const Duration(milliseconds: 250),
+        duration: const Duration(milliseconds: 200),
         width: width,
         alignment: Alignment.center,
         decoration: BoxDecoration(

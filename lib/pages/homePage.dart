@@ -1,14 +1,17 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
+import 'package:get/get.dart';
+import 'package:onyx_delivery/controllers/toggle_tabs_controller.dart';
+import 'package:onyx_delivery/widgets/order_list.dart';
 import '../../widgets/custom_toggle_tabs.dart';
 import '../../widgets/header_with_avatar.dart';
 
-class HomePage extends StatelessWidget {
-  const HomePage({super.key});
+class homePage extends StatelessWidget {
+  const homePage({super.key});
 
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
+    final ToggleTabsController tabsController = Get.put(ToggleTabsController());
 
     return Scaffold(
       body: SafeArea(
@@ -26,27 +29,19 @@ class HomePage extends StatelessWidget {
             //toggle tabs between orders
             const CustomToggleTabs(),
 
-            SizedBox(height: size.height * 0.06),
-
-            // When orders are empty
+            SizedBox(height: size.height * 0.02),
+            
             Expanded(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  SvgPicture.asset(
-                    'lib/assets/svgs/emptyorder.svg',
-                    height: size.height * 0.18,
-                  ),
-                  const SizedBox(height: 16),
-                  const Text('No orders yet'),
-                  const SizedBox(height: 8),
-                  const Text(
-                    "You don't have any orders in your history.",
-                    textAlign: TextAlign.center,
-                  )
-                ],
-              ),
-            )
+              child: Obx(() {
+                if (tabsController.selectedIndex.value == 0) {
+                  // New tab
+                  return const OrderList();
+                } else {
+                  // others tab
+                  return const OrderList();
+                }
+              }),
+            ),
           ],
         ),
       ),

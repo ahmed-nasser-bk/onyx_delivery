@@ -34,7 +34,7 @@ class LoginPage extends StatelessWidget {
                     left: size.width * 0.08,
                     child: IconButton(
                       onPressed: () {
-                        // TODO: تغيير اللغة أو فتح قائمة
+                        // TODO: change language
                       },
                       icon: const Icon(Icons.language, color: Colors.white),
                     ),
@@ -66,7 +66,7 @@ class LoginPage extends StatelessWidget {
                     SizedBox(height: size.height * 0.01),
                     Text(
                       'Log back into your account',
-                      style: Theme.of(context).textTheme.bodyMedium,
+                      style: Theme.of(context).textTheme.headlineMedium,
                     ),
                 
                     SizedBox(height: size.height * 0.04),
@@ -74,6 +74,7 @@ class LoginPage extends StatelessWidget {
                     TextField(
                       controller: controller.userController,
                       keyboardType: TextInputType.number,
+                      style: Theme.of(context).textTheme.bodySmall,
                       decoration: const InputDecoration(
                         hintText: 'User ID',
                       ),
@@ -84,6 +85,7 @@ class LoginPage extends StatelessWidget {
                     TextField(
                       controller: controller.passwordController,
                       obscureText: true,
+                      style: Theme.of(context).textTheme.bodySmall,
                       decoration: const InputDecoration(
                         hintText: 'Password',
                       ),

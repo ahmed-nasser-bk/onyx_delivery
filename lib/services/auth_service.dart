@@ -50,15 +50,15 @@ class AuthService extends GetxController {
       if (responseData['Result']['ErrNo'] == 0) {
         // successful
         Get.offAllNamed(AppRoutes.home);
-        print('Response: $responseData');
+        //print('Response: ${responseData['Data']['DeliveryName']}');
       } else {
         // failed
         Get.snackbar(
           'Login Failed', 
-          responseData['Result']['ErrMsg'] ?? 'Invalid credentials',
+          'Invalid credentials',
           snackPosition: SnackPosition.BOTTOM,
         );
-        print('Request failed with status: ${responseData['Result']}');
+        //print('Request failed with status: ${responseData['Result']['ErrMsg']}');
         isLoading = false;
         update();
       }
@@ -70,7 +70,7 @@ class AuthService extends GetxController {
         'Something went wrong. Please try again.',
         snackPosition: SnackPosition.BOTTOM,
       );
-      print('Error occurred: $e');
+      //print('Error occurred: $e');
     }
   }
 

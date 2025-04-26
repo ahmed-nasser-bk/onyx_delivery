@@ -4,6 +4,7 @@ import 'package:onyx_delivery/app_theme.dart';
 import 'package:onyx_delivery/routes/routes.dart';
 
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
   runApp(const MyApp());
 }
 
