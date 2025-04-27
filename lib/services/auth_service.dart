@@ -17,7 +17,7 @@ class AuthService extends GetxController {
     final password = passwordController.text;
     const url = 'http://mdev.yemensoft.net:8087/OnyxDeliveryService/Service.svc/CheckDeliveryLogin';
 
-    // هذا هو الـ Row اللي سترسله
+    // row to send
     final Map<String, dynamic> payload = {
       'Value': {
         'P_LANG_NO': '2',
@@ -41,10 +41,10 @@ class AuthService extends GetxController {
       final response = await http.post(
         Uri.parse(url),
         headers: {
-          'Content-Type': 'application/json', // ضروري عشان يفهم الـ API انك ترسل JSON
+          'Content-Type': 'application/json',
         },
         body: jsonEncode(payload),
-      );
+      ).timeout(const Duration(seconds: 20));
 
       final responseData = jsonDecode(response.body);
       if (responseData['Result']['ErrNo'] == 0) {
