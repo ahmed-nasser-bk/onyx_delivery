@@ -28,7 +28,7 @@ class AuthService extends GetxController {
 
     if (userId.isEmpty || password.isEmpty) {
       Get.snackbar(
-        'Error!', 'Please, fill in the fields',
+        'Login Failed', 'Please, fill in the fields!',
         snackPosition: SnackPosition.BOTTOM,
       );
       return;
@@ -44,7 +44,7 @@ class AuthService extends GetxController {
           'Content-Type': 'application/json',
         },
         body: jsonEncode(payload),
-      ).timeout(const Duration(seconds: 20));
+      ).timeout(const Duration(seconds: 40));
 
       final responseData = jsonDecode(response.body);
       if (responseData['Result']['ErrNo'] == 0) {
@@ -55,7 +55,7 @@ class AuthService extends GetxController {
         // failed
         Get.snackbar(
           'Login Failed', 
-          'Invalid credentials',
+          'Invalid credentials!',
           snackPosition: SnackPosition.BOTTOM,
         );
         //print('Request failed with status: ${responseData['Result']['ErrMsg']}');
@@ -67,7 +67,7 @@ class AuthService extends GetxController {
       update();
       Get.snackbar(
         'Error', 
-        'Something went wrong. Please try again.',
+        'Something went wrong. Please try again!',
         snackPosition: SnackPosition.BOTTOM,
       );
       //print('Error occurred: $e');
